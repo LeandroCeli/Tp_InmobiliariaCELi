@@ -2,4 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <!-- Premium Real Estate Palette -->
+    <color name="colorPrimary">#1A365D</color>        <!-- Deep Blue -->
+    <color name="colorPrimaryVariant">#0F172A</color> <!-- Darker Blue -->
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorSecondary">#D4AF37</color>      <!-- Elegant Gold -->
+    <color name="colorSecondaryVariant">#B8860B</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+    <color name="colorBackground">#F4F6F8</color>     <!-- Off White/Gray -->
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorError">#B00020</color>
+    <color name="colorOnError">#FFFFFF</color>
 </resources>

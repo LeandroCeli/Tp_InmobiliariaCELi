@@ -13,3 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Archivos de referencia del alumno
+en clase/
+*.pdf
