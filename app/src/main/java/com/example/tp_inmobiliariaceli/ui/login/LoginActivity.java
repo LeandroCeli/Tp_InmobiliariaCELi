@@ -62,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         binding.btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // tomo los datos de la vista
                 String email = binding.etEmail.getText().toString();
                 String password = binding.etPassword.getText().toString();
                 viewModel.recuperarDatos(email, password);

@@ -33,6 +33,7 @@ public class ApiClient {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
                         String token = usarToken(context);
+                        // le agrego el Bearer token a todas las peticiones
                         Request newRequest = chain.request().newBuilder()
                                 .addHeader("Authorization", "Bearer " + token)
                                 .build();

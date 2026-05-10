@@ -17,3 +17,7 @@ local.properties
 # Archivos de referencia del alumno
 en clase/
 *.pdf
+
+# Archivos de Test generados por Android Studio
+/app/src/test/
+/app/src/androidTest/

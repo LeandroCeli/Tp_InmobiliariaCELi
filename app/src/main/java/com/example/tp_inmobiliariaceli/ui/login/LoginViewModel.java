@@ -57,13 +57,13 @@ public class LoginViewModel extends AndroidViewModel {
                     if (response.isSuccessful() && response.body() != null) {
                         String token = response.body();
                         ApiClient.recuperarToken(context, token);
-                        Log.d("token", token);
+                        // Log.d("token_test", token); // ya funciona, lo comento
                         
                         // Notificamos a la vista que el login fue exitoso
                         loginSuccess.setValue(true);
                     } else {
-                        Log.d("Error", response.message());
-                        Log.d("Error", response.code() + "");
+                        Log.d("Error_Login", response.message());
+                        //System.out.println("codigo de error: " + response.code());
                         mensaje.setValue("Usuario o contraseña incorrectos");
                     }
                 }
