@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_inicio">
+
+    <fragment
+        android:id="@+id/nav_inicio"
+        android:name="com.example.tp_inmobiliariaceli.ui.inicio.InicioFragment"
+        android:label="Inicio"
+        tools:layout="@layout/fragment_inicio" />
+        
+    <fragment
+        android:id="@+id/nav_perfil"
+        android:name="com.example.tp_inmobiliariaceli.ui.perfil.PerfilFragment"
+        android:label="Mi Perfil"
+        tools:layout="@layout/fragment_perfil" />
+        
+    <fragment
+        android:id="@+id/nav_inmuebles"
+        android:name="com.example.tp_inmobiliariaceli.ui.inmuebles.InmueblesFragment"
+        android:label="Mis Inmuebles"
+        tools:layout="@layout/fragment_inmuebles" />
+        
+    <fragment
+        android:id="@+id/nav_inquilinos"
+        android:name="com.example.tp_inmobiliariaceli.ui.inquilinos.InquilinosFragment"
+        android:label="Inquilinos"
+        tools:layout="@layout/fragment_inquilinos" />
+        
+    <fragment
+        android:id="@+id/nav_contratos"
+        android:name="com.example.tp_inmobiliariaceli.ui.contratos.ContratosFragment"
+        android:label="Contratos"
+        tools:layout="@layout/fragment_contratos" />
+        
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.tp_inmobiliariaceli.ui.logout.LogoutFragment"
+        android:label="Cerrar Sesión"
+        tools:layout="@layout/fragment_logout" />
+
+</navigation>
