@@ -32,10 +32,10 @@ public class ApiClient {
                 .addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
-                        String token = usarToken(context);
-                        // le agrego el Bearer token a todas las peticiones
+                        String token = leerToken(context);
+                        // el token ya tiene 'Bearer ' concatenado
                         Request newRequest = chain.request().newBuilder()
-                                .addHeader("Authorization", "Bearer " + token)
+                                .addHeader("Authorization", token)
                                 .build();
                         return chain.proceed(newRequest);
                     }
@@ -59,14 +59,14 @@ public class ApiClient {
         Call<Propietario> obtenerPerfil();
     }
     
-    public static void recuperarToken(Context context, String token) {
+    public static void guardarToken(Context context, String token) {
         SharedPreferences sp = context.getSharedPreferences("token.xml", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString("token", token);
+        editor.putString("token", "Bearer " + token);
         editor.apply();
     }
     
-    public static String usarToken(Context context) {
+    public static String leerToken(Context context) {
         SharedPreferences sp = context.getSharedPreferences("token.xml", Context.MODE_PRIVATE);
         return sp.getString("token", "");
     }

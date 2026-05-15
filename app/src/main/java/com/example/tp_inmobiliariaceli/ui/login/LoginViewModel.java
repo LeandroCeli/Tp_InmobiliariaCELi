@@ -56,7 +56,7 @@ public class LoginViewModel extends AndroidViewModel {
                     isLoading.setValue(false);
                     if (response.isSuccessful() && response.body() != null) {
                         String token = response.body();
-                        ApiClient.recuperarToken(context, token);
+                        ApiClient.guardarToken(context, token);
                         // Log.d("token_test", token); // ya funciona, lo comento
                         
                         // Notificamos a la vista que el login fue exitoso
