@@ -16,11 +16,13 @@ import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public class ApiClient {
     public final static String BASE_URL ="https://capacitacion.alwaysdata.net/";
@@ -32,10 +34,10 @@ public class ApiClient {
                 .addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
-                        String token = usarToken(context);
-                        // le agrego el Bearer token a todas las peticiones
+                        String token = leerToken(context);
+                        // el token ya tiene 'Bearer ' concatenado
                         Request newRequest = chain.request().newBuilder()
-                                .addHeader("Authorization", "Bearer " + token)
+                                .addHeader("Authorization", token)
                                 .build();
                         return chain.proceed(newRequest);
                     }
@@ -57,17 +59,29 @@ public class ApiClient {
         
         @GET("api/Propietarios")
         Call<Propietario> obtenerPerfil();
+
+        @PUT("api/Propietarios/actualizar")
+        Call<Propietario> actualizarPerfil(@Body Propietario propietario);
+
+        @FormUrlEncoded
+        @PUT("api/Propietarios/changePassword")
+        Call<Void> cambiarPassword(@Field("currentPassword") String currentPassword, @Field("newPassword") String newPassword);
     }
     
-    public static void recuperarToken(Context context, String token) {
+    public static void guardarToken(Context context, String token) {
         SharedPreferences sp = context.getSharedPreferences("token.xml", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString("token", token);
+        editor.putString("token", "Bearer " + token);
         editor.apply();
     }
     
-    public static String usarToken(Context context) {
+    public static String leerToken(Context context) {
         SharedPreferences sp = context.getSharedPreferences("token.xml", Context.MODE_PRIVATE);
         return sp.getString("token", "");
+    }
+
+    public static void clearToken(Context context) {
+        SharedPreferences sp = context.getSharedPreferences("token.xml", Context.MODE_PRIVATE);
+        sp.edit().remove("token").apply();
     }
 }
