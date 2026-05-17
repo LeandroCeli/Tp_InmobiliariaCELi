@@ -57,4 +57,47 @@ public class PerfilViewModel extends AndroidViewModel {
             }
         });
     }
+
+    public void actualizarPerfil(String dni, String nombre, String apellido, String email, String telefono) {
+        if (dni.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || email.isEmpty() || telefono.isEmpty()) {
+            mMensaje.postValue("Ningún campo puede estar vacío.");
+            return;
+        }
+
+        Propietario current = mPropietario.getValue();
+        if (current == null) {
+            mMensaje.postValue("Error al actualizar: Perfil no cargado.");
+            return;
+        }
+
+        Propietario p = new Propietario();
+        p.setIdPropietario(current.getIdPropietario());
+        p.setDni(dni);
+        p.setNombre(nombre);
+        p.setApellido(apellido);
+        p.setEmail(email);
+        p.setTelefono(telefono);
+        p.setClave(null); // Previene errores de hash/clave en el backend
+
+        ApiClient.MiServicioInmobiliaria api = ApiClient.getServicio(context);
+        Call<Propietario> call = api.actualizarPerfil(p);
+        call.enqueue(new Callback<Propietario>() {
+            @Override
+            public void onResponse(Call<Propietario> call, Response<Propietario> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    mPropietario.postValue(response.body());
+                    mMensaje.postValue("Perfil actualizado con éxito.");
+                } else {
+                    Log.d("API_ERROR", "Error al actualizar perfil: " + response.code());
+                    mMensaje.postValue("Error al actualizar el perfil.");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Propietario> call, Throwable t) {
+                Log.d("API_ERROR", "Falla de red al actualizar: " + t.getMessage());
+                mMensaje.postValue("Error de conexión: " + t.getMessage());
+            }
+        });
+    }
 }

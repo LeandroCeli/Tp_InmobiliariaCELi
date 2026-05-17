@@ -16,11 +16,13 @@ import okhttp3.Response;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 
 public class ApiClient {
     public final static String BASE_URL ="https://capacitacion.alwaysdata.net/";
@@ -57,6 +59,13 @@ public class ApiClient {
         
         @GET("api/Propietarios")
         Call<Propietario> obtenerPerfil();
+
+        @PUT("api/Propietarios/actualizar")
+        Call<Propietario> actualizarPerfil(@Body Propietario propietario);
+
+        @FormUrlEncoded
+        @PUT("api/Propietarios/changePassword")
+        Call<Void> cambiarPassword(@Field("currentPassword") String currentPassword, @Field("newPassword") String newPassword);
     }
     
     public static void guardarToken(Context context, String token) {
