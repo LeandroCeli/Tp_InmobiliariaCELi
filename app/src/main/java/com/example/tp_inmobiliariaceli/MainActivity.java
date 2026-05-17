@@ -48,6 +48,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         vm.cargarPerfil();
+        
+        // Solicitar permisos de ubicación al iniciar la app
+        solicitarPermisosUbicacion();
+    }
+
+    private void solicitarPermisosUbicacion() {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            if (checkSelfPermission(android.Manifest.permission.ACCESS_FINE_LOCATION) != android.content.pm.PackageManager.PERMISSION_GRANTED
+                    || checkSelfPermission(android.Manifest.permission.ACCESS_COARSE_LOCATION) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+                    requestPermissions(new String[]{
+                            android.Manifest.permission.ACCESS_FINE_LOCATION,
+                            android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                            android.Manifest.permission.ACCESS_BACKGROUND_LOCATION
+                    }, 100);
+                } else {
+                    requestPermissions(new String[]{
+                            android.Manifest.permission.ACCESS_FINE_LOCATION,
+                            android.Manifest.permission.ACCESS_COARSE_LOCATION
+                    }, 100);
+                }
+            }
+        }
     }
 
     @Override

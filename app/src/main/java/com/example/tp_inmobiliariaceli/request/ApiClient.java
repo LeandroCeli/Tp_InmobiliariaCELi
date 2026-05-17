@@ -79,4 +79,9 @@ public class ApiClient {
         SharedPreferences sp = context.getSharedPreferences("token.xml", Context.MODE_PRIVATE);
         return sp.getString("token", "");
     }
+
+    public static void clearToken(Context context) {
+        SharedPreferences sp = context.getSharedPreferences("token.xml", Context.MODE_PRIVATE);
+        sp.edit().remove("token").apply();
+    }
 }
