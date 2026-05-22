@@ -1,13 +1,16 @@
 package com.example.tp_inmobiliariaceli.request;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.example.tp_inmobiliariaceli.modelo.Propietario;
+import com.example.tp_inmobiliariaceli.modelo.Inmueble;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
+import java.util.List;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -20,7 +23,6 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 
@@ -39,7 +41,17 @@ public class ApiClient {
                         Request newRequest = chain.request().newBuilder()
                                 .addHeader("Authorization", token)
                                 .build();
-                        return chain.proceed(newRequest);
+                        Response response = chain.proceed(newRequest);
+                        
+                        // Centralización de Seguridad (Hito 1): 401 o 403 redirige a Login
+                        if (response.code() == 401 || response.code() == 403) {
+                            clearToken(context);
+                            Intent intent = new Intent(context, com.example.tp_inmobiliariaceli.ui.login.LoginActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            context.startActivity(intent);
+                        }
+                        
+                        return response;
                     }
                 }).build();
 
@@ -66,6 +78,16 @@ public class ApiClient {
         @FormUrlEncoded
         @PUT("api/Propietarios/changePassword")
         Call<Void> cambiarPassword(@Field("currentPassword") String currentPassword, @Field("newPassword") String newPassword);
+
+        // Hito 3 & 4: Endpoints para Inmuebles
+        @GET("api/Inmuebles")
+        Call<List<Inmueble>> obtenerInmuebles();
+
+        @PUT("api/Inmuebles/actualizar")
+        Call<Inmueble> actualizarInmueble(@Body Inmueble inmueble);
+
+        @POST("api/Inmuebles")
+        Call<Inmueble> crearInmueble(@Body Inmueble inmueble);
     }
     
     public static void guardarToken(Context context, String token) {
