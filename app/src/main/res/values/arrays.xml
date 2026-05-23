@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Usos del inmueble -->
+    <string-array name="lista_uso">
+        <item>Residencial</item>
+        <item>Comercial</item>
+    </string-array>
+
+    <!-- Tipos de inmueble -->
+    <string-array name="lista_tipo">
+        <item>Casa</item>
+        <item>Departamento</item>
+        <item>Local</item>
+        <item>Oficina</item>
+        <item>Terreno</item>
+        <item>Galpón</item>
+    </string-array>
+</resources>
