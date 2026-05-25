@@ -19,6 +19,7 @@ import retrofit2.Response;
 public class PerfilViewModel extends AndroidViewModel {
     private MutableLiveData<Propietario> mPropietario;
     private MutableLiveData<String> mMensaje;
+    private MutableLiveData<Boolean> mEditando; // Estado de edición
     private Context context;
 
     public PerfilViewModel(@NonNull Application application) {
@@ -26,14 +27,16 @@ public class PerfilViewModel extends AndroidViewModel {
         context = application.getApplicationContext();
         mPropietario = new MutableLiveData<>();
         mMensaje = new MutableLiveData<>();
+        mEditando = new MutableLiveData<>(false); // Comienza bloqueado (modo lectura)
     }
 
-    public LiveData<Propietario> getPropietario() {
-        return mPropietario;
-    }
+    public LiveData<Propietario> getPropietario() { return mPropietario; }
+    public LiveData<String> getMensaje() { return mMensaje; }
+    public LiveData<Boolean> getEditando() { return mEditando; }
 
-    public LiveData<String> getMensaje() {
-        return mMensaje;
+    // Cambia el modo entre lectura y edición
+    public void alternarModoEdicion() {
+        mEditando.setValue(!Boolean.TRUE.equals(mEditando.getValue()));
     }
 
     public void obtenerPerfil() {
@@ -45,30 +48,19 @@ public class PerfilViewModel extends AndroidViewModel {
                 if (response.isSuccessful() && response.body() != null) {
                     mPropietario.postValue(response.body());
                 } else {
-                    Log.d("API_ERROR", "Código de error: " + response.code());
-                    mMensaje.postValue("Error al obtener el perfil. Código: " + response.code());
+                    mMensaje.postValue("Error al obtener perfil: " + response.code());
                 }
             }
-
             @Override
             public void onFailure(Call<Propietario> call, Throwable t) {
-                Log.d("API_ERROR", "Error de conexión: " + t.getMessage());
                 mMensaje.postValue("Error de conexión: " + t.getMessage());
             }
         });
     }
 
     public void actualizarPerfil(String dni, String nombre, String apellido, String email, String telefono) {
-        if (dni.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || email.isEmpty() || telefono.isEmpty()) {
-            mMensaje.postValue("Ningún campo puede estar vacío.");
-            return;
-        }
-
         Propietario current = mPropietario.getValue();
-        if (current == null) {
-            mMensaje.postValue("Error al actualizar: Perfil no cargado.");
-            return;
-        }
+        if (current == null) return;
 
         Propietario p = new Propietario();
         p.setIdPropietario(current.getIdPropietario());
@@ -77,26 +69,23 @@ public class PerfilViewModel extends AndroidViewModel {
         p.setApellido(apellido);
         p.setEmail(email);
         p.setTelefono(telefono);
-        p.setClave(null); // Previene errores de hash/clave en el backend
 
         ApiClient.MiServicioInmobiliaria api = ApiClient.getServicio(context);
         Call<Propietario> call = api.actualizarPerfil(p);
         call.enqueue(new Callback<Propietario>() {
             @Override
             public void onResponse(Call<Propietario> call, Response<Propietario> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    mPropietario.postValue(response.body());
+                if (response.isSuccessful()) {
+                    mPropietario.postValue(p);
+                    mEditando.postValue(false); // Vuelve a modo lectura al guardar
                     mMensaje.postValue("Perfil actualizado con éxito.");
                 } else {
-                    Log.d("API_ERROR", "Error al actualizar perfil: " + response.code());
-                    mMensaje.postValue("Error al actualizar el perfil.");
+                    mMensaje.postValue("Error al actualizar.");
                 }
             }
-
             @Override
             public void onFailure(Call<Propietario> call, Throwable t) {
-                Log.d("API_ERROR", "Falla de red al actualizar: " + t.getMessage());
-                mMensaje.postValue("Error de conexión: " + t.getMessage());
+                mMensaje.postValue("Falla de red.");
             }
         });
     }

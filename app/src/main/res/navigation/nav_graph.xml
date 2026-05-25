@@ -21,7 +21,26 @@
         android:id="@+id/nav_inmuebles"
         android:name="com.example.tp_inmobiliariaceli.ui.inmuebles.InmueblesFragment"
         android:label="Mis Inmuebles"
-        tools:layout="@layout/fragment_inmuebles" />
+        tools:layout="@layout/fragment_inmuebles">
+        <action
+            android:id="@+id/action_inmuebles_to_detalle"
+            app:destination="@id/nav_inmueble_detalle" />
+        <action
+            android:id="@+id/action_inmuebles_to_agregar"
+            app:destination="@id/nav_inmueble_crear" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_inmueble_detalle"
+        android:name="com.example.tp_inmobiliariaceli.ui.inmuebles.InmuebleDetalleFragment"
+        android:label="Detalle del Inmueble"
+        tools:layout="@layout/fragment_inmueble_detalle" />
+
+    <fragment
+        android:id="@+id/nav_inmueble_crear"
+        android:name="com.example.tp_inmobiliariaceli.ui.inmuebles.InmuebleCrearFragment"
+        android:label="Agregar Inmueble"
+        tools:layout="@layout/fragment_inmueble_crear" />
         
     <fragment
         android:id="@+id/nav_inquilinos"

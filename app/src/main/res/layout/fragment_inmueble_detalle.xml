@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F5F5F5">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvDetalleTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Información del Inmueble"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#7B1FA2"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardDetalleInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:layout_constraintTop_toBottomOf="@id/tvDetalleTitulo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:rowCount="4"
+                android:padding="20dp"
+                android:alignmentMode="alignBounds"
+                android:columnOrderPreserved="false">
+
+                <!-- Código -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Código"
+                        android:textSize="12sp"
+                        android:textColor="#888888" />
+                    <TextView
+                        android:id="@+id/tvDetalleCodigo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333" />
+                </LinearLayout>
+
+                <!-- Ambientes -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ambientes"
+                        android:textSize="12sp"
+                        android:textColor="#888888" />
+                    <TextView
+                        android:id="@+id/tvDetalleAmbientes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333" />
+                </LinearLayout>
+
+                <!-- Dirección -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dirección"
+                        android:textSize="12sp"
+                        android:textColor="#888888" />
+                    <TextView
+                        android:id="@+id/tvDetalleDireccion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333" />
+                </LinearLayout>
+
+                <!-- Precio -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Precio"
+                        android:textSize="12sp"
+                        android:textColor="#888888" />
+                    <TextView
+                        android:id="@+id/tvDetallePrecio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#7B1FA2" />
+                </LinearLayout>
+
+                <!-- Uso -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Uso"
+                        android:textSize="12sp"
+                        android:textColor="#888888" />
+                    <TextView
+                        android:id="@+id/tvDetalleUso"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333" />
+                </LinearLayout>
+
+                <!-- Disponible Switch -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Estado"
+                        android:textSize="12sp"
+                        android:textColor="#888888" />
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/swDetalleDisponible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Disponible"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        app:useMaterialThemeColors="true" />
+                </LinearLayout>
+
+                <!-- Tipo -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tipo"
+                        android:textSize="12sp"
+                        android:textColor="#888888" />
+                    <TextView
+                        android:id="@+id/tvDetalleTipo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333" />
+                </LinearLayout>
+
+            </GridLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardDetalleFoto"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:layout_constraintTop_toBottomOf="@id/cardDetalleInfo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/ivDetalleFoto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:contentDescription="Foto del Inmueble"
+                android:background="#E0E0E0" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
