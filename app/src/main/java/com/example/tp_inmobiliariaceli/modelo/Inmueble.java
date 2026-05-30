@@ -67,4 +67,9 @@ public class Inmueble implements Serializable {
     public void setLatitud(double latitud) { this.latitud = latitud; }
     public double getLongitud() { return longitud; }
     public void setLongitud(double longitud) { this.longitud = longitud; }
+
+    @Override
+    public String toString() {
+        return direccion;
+    }
 }
