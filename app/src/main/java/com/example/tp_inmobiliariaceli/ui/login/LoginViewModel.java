@@ -16,7 +16,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class LoginViewModel extends AndroidViewModel {
-    
+
     private MutableLiveData<String> mensaje;
     private MutableLiveData<Boolean> loginSuccess;
     private MutableLiveData<Boolean> isLoading;
@@ -58,7 +58,7 @@ public class LoginViewModel extends AndroidViewModel {
                         String token = response.body();
                         ApiClient.guardarToken(context, token);
                         // Log.d("token_test", token); // ya funciona, lo comento
-                        
+
                         // Notificamos a la vista que el login fue exitoso
                         loginSuccess.setValue(true);
                     } else {
