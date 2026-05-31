@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://tools.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F6F8">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detalle del Contrato"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"
+            android:layout_marginBottom="16dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Código Contrato -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Código Contrato"
+                    android:textSize="12sp"
+                    android:textColor="#888888"/>
+
+                <TextView
+                    android:id="@+id/tvContratoCodigo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="12dp"
+                    tools:text="45"/>
+
+                <!-- Fecha de Inicio -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha de Inicio"
+                    android:textSize="12sp"
+                    android:textColor="#888888"/>
+
+                <TextView
+                    android:id="@+id/tvContratoFechaInicio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="12dp"
+                    tools:text="01/01/2026"/>
+
+                <!-- Fecha de Fin -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha de Fin"
+                    android:textSize="12sp"
+                    android:textColor="#888888"/>
+
+                <TextView
+                    android:id="@+id/tvContratoFechaFin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="12dp"
+                    tools:text="01/01/2028"/>
+
+                <!-- SECCIÓN REFORMADA: Contenedor Horizontal para Monto y Botón Pagos -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+
+                    <!-- Lado Izquierdo: Textos de Monto -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Monto Mensual"
+                            android:textSize="12sp"
+                            android:textColor="#888888"/>
+
+                        <TextView
+                            android:id="@+id/tvContratoMonto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorSecondary"
+                            tools:text="$ 150.000"/>
+                    </LinearLayout>
+
+                    <!-- Lado Derecho: Botón Pagos -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnVerPagosContrato"
+                        style="@style/Widget.MaterialComponents.Button.TextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ver Pagos"
+                        android:textColor="@color/colorPrimary"
+                        app:rippleColor="@color/colorSecondary" />
+                </LinearLayout>
+
+                <!-- Línea divisoria -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#E0E0E0"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"/>
+
+                <!-- Inquilino -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Inquilino"
+                    android:textSize="12sp"
+                    android:textColor="#888888"/>
+
+                <TextView
+                    android:id="@+id/tvContratoInquilino"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:layout_marginBottom="12dp"
+                    tools:text="Juan Pérez"/>
+
+                <!-- Propiedad -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Propiedad"
+                    android:textSize="12sp"
+                    android:textColor="#888888"/>
+
+                <TextView
+                    android:id="@+id/tvContratoInmueble"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    tools:text="Av. Illia 450"/>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</ScrollView>

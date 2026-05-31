@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 
 import com.example.tp_inmobiliariaceli.modelo.Propietario;
 import com.example.tp_inmobiliariaceli.modelo.Inmueble;
+import com.example.tp_inmobiliariaceli.modelo.Inquilino;
+import com.example.tp_inmobiliariaceli.modelo.Contrato;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -29,6 +31,7 @@ import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
+import retrofit2.http.Path;
 
 public class ApiClient {
     public final static String BASE_URL ="https://capacitacion.alwaysdata.net/";
@@ -97,6 +100,16 @@ public class ApiClient {
                 @Part MultipartBody.Part imagen,
                 @Part("inmueble") RequestBody inmuebleJson
         );
+
+        // --- Hito 5 & 6: Endpoints para Contratos e Inquilinos ---
+        @GET("api/Inmuebles/GetContratoVigente")
+        Call<List<Inmueble>> obtenerInmueblesAlquilados();
+
+        @GET("api/Contratos/inmueble/{id}")
+        Call<Contrato> obtenerContratoPorInmueble(@Path("id") int idInmueble);
+
+        @GET("api/Inquilinos/inmueble/{id}")
+        Call<Inquilino> obtenerInquilinoPorInmueble(@Path("id") int idInmueble);
     }
 
     public static void guardarToken(Context context, String token) {

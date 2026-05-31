@@ -10,13 +10,13 @@
         android:name="com.example.tp_inmobiliariaceli.ui.inicio.InicioFragment"
         android:label="Inicio"
         tools:layout="@layout/fragment_inicio" />
-        
+
     <fragment
         android:id="@+id/nav_perfil"
         android:name="com.example.tp_inmobiliariaceli.ui.perfil.PerfilFragment"
         android:label="Mi Perfil"
         tools:layout="@layout/fragment_perfil" />
-        
+
     <fragment
         android:id="@+id/nav_inmuebles"
         android:name="com.example.tp_inmobiliariaceli.ui.inmuebles.InmueblesFragment"
@@ -41,19 +41,41 @@
         android:name="com.example.tp_inmobiliariaceli.ui.inmuebles.InmuebleCrearFragment"
         android:label="Agregar Inmueble"
         tools:layout="@layout/fragment_inmueble_crear" />
-        
+
     <fragment
         android:id="@+id/nav_inquilinos"
         android:name="com.example.tp_inmobiliariaceli.ui.inquilinos.InquilinosFragment"
         android:label="Inquilinos"
-        tools:layout="@layout/fragment_inquilinos" />
-        
+        tools:layout="@layout/fragment_inquilinos">
+        <action
+            android:id="@+id/action_inquilinos_to_detalle"
+            app:destination="@id/nav_inquilino_detalle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_inquilino_detalle"
+        android:name="com.example.tp_inmobiliariaceli.ui.inquilinos.InquilinoDetalleFragment"
+        android:label="Información del inquilino"
+        tools:layout="@layout/fragment_inquilino_detalle" />
+
+    <!-- MODIFICADO: Se abrió el fragment para agregarle la acción de navegación -->
     <fragment
         android:id="@+id/nav_contratos"
         android:name="com.example.tp_inmobiliariaceli.ui.contratos.ContratosFragment"
         android:label="Contratos"
-        tools:layout="@layout/fragment_contratos" />
-        
+        tools:layout="@layout/fragment_contratos" >
+        <action
+            android:id="@+id/action_contratos_to_detalle"
+            app:destination="@id/nav_contrato_detalle" />
+    </fragment>
+
+    <!-- AGREGADO: El nuevo destino para la pantalla de detalle del contrato -->
+    <fragment
+        android:id="@+id/nav_contrato_detalle"
+        android:name="com.example.tp_inmobiliariaceli.ui.contratos.ContratoDetalleFragment"
+        android:label="Detalle del Contrato"
+        tools:layout="@layout/fragment_contrato_detalle" />
+
     <fragment
         android:id="@+id/nav_logout"
         android:name="com.example.tp_inmobiliariaceli.ui.logout.LogoutFragment"
