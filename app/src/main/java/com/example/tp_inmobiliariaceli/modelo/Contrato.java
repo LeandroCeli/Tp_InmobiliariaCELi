@@ -1,12 +1,20 @@
 package com.example.tp_inmobiliariaceli.modelo;
 
+import com.google.gson.annotations.SerializedName; // <--- REVISAR QUE ESTE IMPORT ESTÉ PRESENTE
 import java.io.Serializable;
 
 public class Contrato implements Serializable {
     private int idContrato;
     private String fechaInicio;
+
+    // SOLUCIÓN 1: Mapea "fechaFinalizacion" del JSON a tu variable fechaFin
+    @SerializedName("fechaFinalizacion")
     private String fechaFin;
+
+    // SOLUCIÓN 2: Mapea "montoAlquiler" del JSON a tu variable monto
+    @SerializedName("montoAlquiler")
     private double monto;
+
     private Inmueble inmueble;
     private Inquilino inquilino;
 
