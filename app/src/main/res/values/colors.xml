@@ -2,7 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    
+
     <!-- Premium Real Estate Palette -->
     <color name="colorPrimary">#1A365D</color>        <!-- Deep Blue -->
     <color name="colorPrimaryVariant">#0F172A</color> <!-- Darker Blue -->

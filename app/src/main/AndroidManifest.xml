@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.tp_inmobiliariaceli">
 
-    <!-- INTERNET -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-    <!-- UBICACION -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <!-- CAMARA -->
     <uses-permission android:name="android.permission.CAMERA" />
 
-    <!-- LLAMADAS -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <uses-feature
         android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.telephony"
         android:required="false" />
 
     <application
@@ -29,38 +30,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tp_InmobiliariaCELi">
 
-        <!-- GOOGLE MAPS -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCCTh_pBIPm47ZKUHt_nqgi6DX2vNiFK-c" />
 
-        <!-- FILE PROVIDER -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
-
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
-
         </provider>
 
-        <!-- LOGIN -->
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
-        <!-- MAIN -->
         <activity
             android:name=".MainActivity"
             android:exported="false" />

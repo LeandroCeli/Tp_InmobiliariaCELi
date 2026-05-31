@@ -16,7 +16,7 @@
         android:contentDescription="Avatar"
         android:src="@android:mipmap/sym_def_app_icon"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/rounded_edittext"
+        android:background="@drawable/logo_inmobiliaria_celi"
         android:padding="8dp"
         app:tint="@color/colorSecondary" />
 
