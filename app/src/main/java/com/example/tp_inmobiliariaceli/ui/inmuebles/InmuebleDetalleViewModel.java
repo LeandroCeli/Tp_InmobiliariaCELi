@@ -43,6 +43,9 @@ public class InmuebleDetalleViewModel extends AndroidViewModel {
     public void actualizarDisponibilidad(Inmueble inmueble, boolean disponible) {
         if (inmueble == null) return;
 
+        // Guardamos el estado anterior para revertir en caso de error
+        boolean estadoAnterior = inmueble.isDisponible();
+
         // Modificamos solo el campo de disponibilidad
         inmueble.setDisponible(disponible);
 
@@ -58,7 +61,8 @@ public class InmuebleDetalleViewModel extends AndroidViewModel {
                     Log.d("API_ERROR", "Error al actualizar disponibilidad: " + response.code());
                     mMensaje.postValue("Error al actualizar estado en el servidor.");
                     
-                    // En caso de fallo, volvemos a notificar el objeto original para revertir el Switch en la vista
+                    // En caso de fallo, revertimos el cambio y notificamos
+                    inmueble.setDisponible(estadoAnterior);
                     mInmueble.postValue(inmueble);
                 }
             }
@@ -69,6 +73,7 @@ public class InmuebleDetalleViewModel extends AndroidViewModel {
                 mMensaje.postValue("Error de conexión: " + t.getMessage());
                 
                 // Revertimos en la vista
+                inmueble.setDisponible(estadoAnterior);
                 mInmueble.postValue(inmueble);
             }
         });

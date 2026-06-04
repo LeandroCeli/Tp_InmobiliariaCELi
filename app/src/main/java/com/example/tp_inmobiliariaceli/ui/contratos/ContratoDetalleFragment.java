@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -20,6 +21,12 @@ public class ContratoDetalleFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         viewModel = new ViewModelProvider(this).get(ContratoDetalleViewModel.class);
         binding = FragmentContratoDetalleBinding.inflate(inflater, container, false);
+
+        viewModel.getMensaje().observe(getViewLifecycleOwner(), mensaje -> {
+            if (mensaje != null && !mensaje.isEmpty()) {
+                Toast.makeText(requireContext(), mensaje, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Nos suscribimos al LiveData del ViewModel para enterarnos cuando llegue el contrato
         viewModel.getContrato().observe(getViewLifecycleOwner(), contrato -> {

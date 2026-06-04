@@ -1,7 +1,6 @@
 package com.example.tp_inmobiliariaceli.ui.contratos;
 
 import android.app.Application;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -16,6 +15,7 @@ import retrofit2.Response;
 
 public class ContratoDetalleViewModel extends AndroidViewModel {
     private final MutableLiveData<Contrato> mContrato = new MutableLiveData<>();
+    private final MutableLiveData<String> mMensaje = new MutableLiveData<>();
 
     public ContratoDetalleViewModel(@NonNull Application application) {
         super(application);
@@ -25,24 +25,28 @@ public class ContratoDetalleViewModel extends AndroidViewModel {
         return mContrato;
     }
 
+    public LiveData<String> getMensaje() {
+        return mMensaje;
+    }
+
     public void cargarContrato(int idInmueble) {
-        // CORREGIDO: Se removió la línea de leerToken ya que tu interfaz de Retrofit no lo requiere como argumento
+
         ApiClient.getServicio(getApplication())
-                .obtenerContratoPorInmueble(idInmueble) // Llamada corregida con un solo parámetro
+                .obtenerContratoPorInmueble(idInmueble)
                 .enqueue(new Callback<Contrato>() {
                     @Override
                     public void onResponse(Call<Contrato> call, Response<Contrato> response) {
                         if (response.isSuccessful() && response.body() != null) {
-                            // Seteamos el contrato en el LiveData para que el Fragment lo dibuje
+
                             mContrato.setValue(response.body());
                         } else {
-                            Toast.makeText(getApplication(), "No se encontró un contrato activo", Toast.LENGTH_SHORT).show();
+                            mMensaje.setValue("No se encontró un contrato activo");
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Contrato> call, Throwable t) {
-                        Toast.makeText(getApplication(), "Error de conexión al obtener contrato", Toast.LENGTH_SHORT).show();
+                        mMensaje.setValue("Error de conexión al obtener contrato");
                     }
                 });
     }

@@ -78,7 +78,7 @@ public class InmueblesFragment extends Fragment {
             }
         });
 
-        // Configurar FAB para navegar al alta de nuevo inmueble
+
         binding.fabAgregarInmueble.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,8 +86,7 @@ public class InmueblesFragment extends Fragment {
             }
         });
 
-        // Cargar los inmuebles al inicializar
-        viewModel.cargarInmuebles();
+
     }
 
     @Override

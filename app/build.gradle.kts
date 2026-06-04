@@ -1,14 +1,12 @@
 plugins {
     alias(libs.plugins.android.application)
+    // 1. AGREGÁS ESTA LÍNEA ACÁ PARA ACTIVAR EL PLUGIN DE SECRETOS EN LA APP
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
     namespace = "com.example.tp_inmobiliariaceli"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 36 // Nota: Simplifiqué la sintaxis si te daba error la estructura previa
 
     defaultConfig {
         applicationId = "com.example.tp_inmobiliariaceli"
@@ -33,7 +31,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    
+
     buildFeatures {
         viewBinding = true
     }

@@ -30,8 +30,6 @@ public class LogoutFragment extends Fragment {
         binding = FragmentLogoutBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        mostrarDialogoLogout();
-
         return root;
     }
 
@@ -64,14 +62,19 @@ public class LogoutFragment extends Fragment {
             @Override
             public void onChanged(Boolean success) {
                 if (success != null && success) {
-                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-                    // Flags para limpiar toda la pila de actividades anteriores
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                    getActivity().finish();
+                    if (getActivity() != null) {
+                        Intent intent = new Intent(getActivity(), LoginActivity.class);
+                        // Flags para limpiar toda la pila de actividades anteriores
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
                 }
             }
         });
+
+
+        mostrarDialogoLogout();
     }
 
     @Override
