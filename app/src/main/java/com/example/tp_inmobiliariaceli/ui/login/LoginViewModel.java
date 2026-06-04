@@ -27,7 +27,7 @@ public class LoginViewModel extends AndroidViewModel {
     private MutableLiveData<Boolean> isLoading;
     private Context context;
 
-    // ESPECÍFICO CLASE 29 DE ABRIL: LiveData para comunicar el evento del sensor a la vista
+
     private MutableLiveData<Boolean> mAgitadoExitoso;
 
     // Componentes del Sensor centralizados en el ViewModel

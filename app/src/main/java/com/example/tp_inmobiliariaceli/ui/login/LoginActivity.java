@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    // ESPECÍFICO CLASE 29 DE ABRIL: La Activity coordina el encendido y apagado vinculando la vista al ViewModel
+
     @Override
     protected void onResume() {
         super.onResume();
