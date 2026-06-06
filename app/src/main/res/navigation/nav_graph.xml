@@ -74,7 +74,27 @@
         android:id="@+id/nav_contrato_detalle"
         android:name="com.example.tp_inmobiliariaceli.ui.contratos.ContratoDetalleFragment"
         android:label="Detalle del Contrato"
-        tools:layout="@layout/fragment_contrato_detalle" />
+        tools:layout="@layout/fragment_contrato_detalle" >
+        <action
+            android:id="@+id/action_contrato_detalle_to_pagos"
+            app:destination="@id/nav_pagos" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_pagos"
+        android:name="com.example.tp_inmobiliariaceli.ui.pagos.PagosFragment"
+        android:label="Pagos del Contrato"
+        tools:layout="@layout/fragment_pagos">
+        <action
+            android:id="@+id/action_pagos_to_pago_detalle"
+            app:destination="@id/nav_pago_detalle" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_pago_detalle"
+        android:name="com.example.tp_inmobiliariaceli.ui.pagos.PagoDetalleFragment"
+        android:label="Detalle de Pago"
+        tools:layout="@layout/fragment_pago_detalle" />
 
     <fragment
         android:id="@+id/nav_logout"

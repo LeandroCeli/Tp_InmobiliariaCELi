@@ -44,6 +44,12 @@ public class ContratoDetalleFragment extends Fragment {
                 if (contrato.getInmueble() != null) {
                     binding.tvContratoInmueble.setText(contrato.getInmueble().getDireccion());
                 }
+                
+                binding.btnVerPagosContrato.setOnClickListener(v -> {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("idContrato", contrato.getIdContrato());
+                    androidx.navigation.Navigation.findNavController(v).navigate(com.example.tp_inmobiliariaceli.R.id.action_contrato_detalle_to_pagos, bundle);
+                });
             }
         });
 

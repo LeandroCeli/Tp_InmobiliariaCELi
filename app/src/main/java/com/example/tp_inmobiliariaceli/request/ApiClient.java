@@ -110,6 +110,9 @@ public class ApiClient {
 
         @GET("api/Inquilinos/inmueble/{id}")
         Call<Inquilino> obtenerInquilinoPorInmueble(@Path("id") int idInmueble);
+
+        @GET("api/pagos/contrato/{id}")
+        Call<List<com.example.tp_inmobiliariaceli.modelo.Pago>> obtenerPagosPorContrato(@Path("id") int idContrato);
     }
 
     public static void guardarToken(Context context, String token) {

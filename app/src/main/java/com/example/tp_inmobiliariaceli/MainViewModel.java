@@ -24,6 +24,7 @@ public class MainViewModel extends AndroidViewModel {
         super(application);
         context = application.getApplicationContext();
         propietario = new MutableLiveData<>();
+        cargarPerfil();
     }
 
     public LiveData<Propietario> getPropietario() {

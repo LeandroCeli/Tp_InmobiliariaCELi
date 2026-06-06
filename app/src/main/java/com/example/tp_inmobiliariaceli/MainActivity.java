@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        // TODO: Mover esto a otro lado despues? por ahora lo dejo aca
+
         MainViewModel vm = new androidx.lifecycle.ViewModelProvider(this).get(MainViewModel.class);
         vm.getPropietario().observe(this, new androidx.lifecycle.Observer<com.example.tp_inmobiliariaceli.modelo.Propietario>() {
             @Override
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 // Toast.makeText(MainActivity.this, "Cargo el perfil", Toast.LENGTH_SHORT).show();
             }
         });
-        vm.cargarPerfil();
+        //vm.cargarPerfil();
         
         // Solicitar permisos de ubicación al iniciar la app
         solicitarPermisosUbicacion();
